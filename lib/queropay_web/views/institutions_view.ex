@@ -6,12 +6,11 @@ defmodule QueropayWeb.InstitutionsView do
   def render("create.json", %{institution: %Institution{} = institution}) do
     %{
       message: "Institution created!",
-      institution: %{
-        id: institution.id,
-        name: institution.name,
-        document: institution.document,
-        kind: institution.kind
-      }
+      institution: institution
     }
   end
+
+  def render("institution.json", %{institution: %Institution{} = institution}), do: %{institution: institution}
+
+  def render("delete.json", _), do: %{message: "Institution deleted!"}
 end

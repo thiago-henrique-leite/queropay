@@ -1,8 +1,11 @@
 defmodule QueropayWeb.Router do
   use QueropayWeb, :router
 
+  alias QueropayWeb.Plugs.IDChecker
+
   pipeline :api do
     plug :accepts, ["json"]
+    plug IDChecker
   end
 
   scope "/api", QueropayWeb do

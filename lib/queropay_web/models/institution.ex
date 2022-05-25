@@ -14,6 +14,8 @@ defmodule Queropay.Institution do
     :kind
   ]
 
+  @derive {Jason.Encoder, only: [:id, :name, :document, :kind]}
+
   schema "institutions" do
     field :name, :string
     field :document, :string
@@ -22,8 +24,8 @@ defmodule Queropay.Institution do
     timestamps()
   end
 
-  def changeset(%{} = params) do
-    %__MODULE__{}
+  def changeset(struct \\ %__MODULE__{}, %{} = params) do
+    struct
     |> cast(params, @fields_that_can_be_changed)
     |> validate_required(@required_fields)
     |> validate_length(:document, is: 14)

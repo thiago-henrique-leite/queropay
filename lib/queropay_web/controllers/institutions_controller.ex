@@ -1,13 +1,24 @@
 defmodule QueropayWeb.InstitutionsController do
   use QueropayWeb, :controller
 
-  alias Queropay.{Institution, Repo}
+  alias Queropay.Institution
+  alias QueropayWeb.FallbackController
 
-  def index(conn) do
-    with {:ok, institutions} <- Repo.all(Institution) do
+  action_fallback FallbackController
+
+  def show(conn, %{"id" => id}) do
+    with {:ok, %Institution{} = institution} <- Queropay.get_institution_by_id(id) do
       conn
-      |> put_status(:created)
-      |> render("index.json", institution: institutions)
+      |> put_status(:ok)
+      |> render("institution.json", institution: institution)
+    end
+  end
+
+  def update(conn, %{} = params) do
+    with {:ok, %Institution{} = institution} <- Queropay.update_institution(params) do
+      conn
+      |> put_status(:ok)
+      |> render("institution.json", institution: institution)
     end
   end
 
@@ -16,6 +27,14 @@ defmodule QueropayWeb.InstitutionsController do
       conn
       |> put_status(:created)
       |> render("create.json", institution: institution)
+    end
+  end
+
+  def delete(conn, %{"id" => id}) do
+    with {:ok, %Institution{}} <- Queropay.delete_institution(id) do
+      conn
+      |> put_status(:ok)
+      |> render("delete.json")
     end
   end
 end
