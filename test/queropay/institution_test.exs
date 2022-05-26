@@ -11,7 +11,7 @@ defmodule Queropay.InstitutionTest do
 
       response = Institution.changeset(params)
 
-      assert %Changeset{changes: params, valid?: true} = response
+      assert %Changeset{changes: %{name: "UniFCV"}, valid?: true} = response
     end
 
     test "when updating a changeset, returns a valid changeset with the given changes" do
@@ -27,7 +27,7 @@ defmodule Queropay.InstitutionTest do
     end
 
     test "when there are some error, returns a invalid changeset" do
-      params = build(:institution_params, %{kind: "invalid", document: "123"})
+      params = build(:institution_params, %{"kind" => "invalid", "document" => "123"})
 
       response = Institution.changeset(params)
 
