@@ -12,6 +12,7 @@ defmodule QueropayWeb.Router do
     pipe_through :api
 
     resources "/institutions", InstitutionsController, except: [:edit, :new]
+    resources "/students", StudentsController, except: [:edit, :new]
   end
 
   # Enables LiveDashboard only for development

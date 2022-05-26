@@ -1,4 +1,5 @@
-- Implementar método de GET para instituição
 - Implementar teste para Get/Update/Delete
 - Finalizar testes do InstitutionController
-- Criar módulos de Student, Enrollment e Bill
+- Criar módulos Enrollment e Bill
+- Corrigir recebimento da data de nascimento do Student
+- Tratar erros do Update
