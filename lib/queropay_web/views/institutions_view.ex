@@ -9,8 +9,7 @@ defmodule QueropayWeb.InstitutionsView do
       institution: institution
     }
   end
-
   def render("institution.json", %{institution: %Institution{} = institution}), do: %{institution: institution}
-
+  def render("institutions.json", %{institutions: institutions}), do: institutions
   def render("delete.json", _), do: %{message: "Institution deleted!"}
 end

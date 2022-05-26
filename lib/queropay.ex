@@ -11,6 +11,7 @@ defmodule Queropay do
   alias Queropay.Institutions.Delete, as: InstitutionDelete
   alias Queropay.Institutions.Update, as: InstitutionUpdate
 
+  defdelegate get_all_institutions(), to: InstitutionGet, as: :all
   defdelegate create_institution(params), to: InstitutionCreate, as: :call
   defdelegate get_institution_by_id(id), to: InstitutionGet, as: :call
   defdelegate delete_institution(id), to: InstitutionDelete, as: :call

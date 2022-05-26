@@ -6,6 +6,14 @@ defmodule QueropayWeb.InstitutionsController do
 
   action_fallback FallbackController
 
+  def index(conn, _) do
+    with {:ok, institutions} <- Queropay.get_all_institutions() do
+      conn
+      |> put_status(:ok)
+      |> render("institutions.json", institutions: institutions)
+    end
+  end
+
   def show(conn, %{"id" => id}) do
     with {:ok, %Institution{} = institution} <- Queropay.get_institution_by_id(id) do
       conn

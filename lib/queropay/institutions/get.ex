@@ -7,4 +7,22 @@ defmodule Queropay.Institutions.Get do
       institution_schema -> {:ok, institution_schema}
     end
   end
+
+  def all do
+    payload = %{institutions: all_institutions()}
+
+    {:ok, payload}
+  end
+
+  defp all_institutions do
+    Institution
+    |> Repo.all
+    |> Enum.map(fn institution ->
+      %{
+        id: institution.id,
+        name: institution.name,
+        kind: institution.kind,
+        document: institution.document
+      } end)
+  end
 end
