@@ -1,43 +1,52 @@
 defmodule Queropay.EnrollmentBillsCreation do
   @moduledoc false
   use QueropayWeb, :service
+  use Timex
 
   alias Queropay.Repo
   alias Queropay.Enrollment
   alias Queropay.Bill
 
   def perform(%Enrollment{} = enrollment) do
-    bill_value = enrollment.full_value / enrollment.amount_bills
-
-    today = Date.utc_today()
-
-    {:ok, due_date} = Date.new(today.year, today.month, enrollment.due_day)
-
     params = %{
-      "value" => bill_value,
+      "value" => calculate_bill_value(enrollment),
       "status" => "aberta",
-      "due_date" => due_date,
       "enrollment_id" => enrollment.id
     }
 
-    for _i <- 1..(enrollment.amount_bills) do
-      date = next_month(due_date)
-      params = Map.put(params, "due_date", date)
-      create_bill(params)
+    date = first_due_date(enrollment)
+
+    for index <- 0..(enrollment.amount_bills - 1) do
+      d = Timex.shift(date, months: index)
+      params = Map.put(params, "due_date", due_date(enrollment.due_day, d.month, d.year))
+      params |> create_bill()
     end
   end
 
   def perform(_), do: %{error: %{message: "Parâmetros inválidos!"}}
 
+  def calculate_bill_value(enrollment) do
+    enrollment.full_value / enrollment.amount_bills
+  end
+
+  def first_due_date(enrollment) do
+    today = Timex.today()
+
+    first_month = if(today.day >= enrollment.due_day, do: today.month + 1, else: today.month)
+
+    due_date(enrollment.due_day, first_month, today.year)
+  end
+
+  def due_date(day, month, year) do
+    case Date.new(year, month, day) do
+      {:ok, date} -> date
+      {:error, :invalid_date} -> Date.end_of_month(Date.new!(year, month, 1))
+    end
+  end
+
   def create_bill(%{} = params) do
     params
     |> Bill.changeset()
     |> Repo.insert()
-  end
-
-  def next_month(%Date{} = date) do
-    first_day_of_next_month = Date.add(date, Calendar.ISO.days_in_month(date.year, date.month) - date.day + 1)
-    %{year: year, month: month} = first_day_of_next_month
-    Date.add(first_day_of_next_month, min(date.day, Calendar.ISO.days_in_month(year, month)) - 1)
   end
 end
