@@ -1,5 +1,2 @@
 - Implementar teste para Get/Update/Delete
 - Finalizar testes do InstitutionController
-- Tratar erros do Update
-- Corrigir criação de Bills
-  - Concertar incremento das datas
