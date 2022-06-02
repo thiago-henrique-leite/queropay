@@ -28,6 +28,7 @@ defmodule Queropay.Student do
     field :phone, :string
     field :gender, :string
     field :payment_method, :string
+    has_many :enrollments, Queropay.Enrollment
 
     timestamps()
   end

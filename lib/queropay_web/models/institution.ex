@@ -20,6 +20,7 @@ defmodule Queropay.Institution do
     field :name, :string
     field :document, :string
     field :kind, :string
+    has_many :enrollments, Queropay.Enrollment
 
     timestamps()
   end

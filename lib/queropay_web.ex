@@ -27,6 +27,14 @@ defmodule QueropayWeb do
     end
   end
 
+  def service do
+    quote do
+      import Plug.Conn
+      import QueropayWeb.Gettext
+      alias QueropayWeb.Router.Helpers, as: Routes
+    end
+  end
+
   def view do
     quote do
       use Phoenix.View,

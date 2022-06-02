@@ -13,6 +13,8 @@ defmodule QueropayWeb.Router do
 
     resources "/institutions", InstitutionsController, except: [:edit, :new]
     resources "/students", StudentsController, except: [:edit, :new]
+    resources "/enrollments", EnrollmentsController, except: [:edit, :new]
+    resources "/bills", BillsController, except: [:edit, :new, :create]
   end
 
   # Enables LiveDashboard only for development

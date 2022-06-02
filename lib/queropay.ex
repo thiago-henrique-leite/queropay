@@ -16,6 +16,17 @@ defmodule Queropay do
   alias Queropay.Students.Delete, as: StudentDelete
   alias Queropay.Students.Update, as: StudentUpdate
 
+  alias Queropay.Enrollments.Create, as: EnrollmentCreate
+  alias Queropay.Enrollments.Get, as: EnrollmentGet
+  alias Queropay.Enrollments.Delete, as: EnrollmentDelete
+  alias Queropay.Enrollments.Update, as: EnrollmentUpdate
+
+  alias Queropay.Bills.Get, as: BillGet
+  alias Queropay.Bills.Delete, as: BillDelete
+  alias Queropay.Bills.Update, as: BillUpdate
+
+  alias Queropay.EnrollmentBillsCreation
+
   defdelegate get_all_institutions(), to: InstitutionGet, as: :all
   defdelegate create_institution(params), to: InstitutionCreate, as: :call
   defdelegate get_institution_by_id(id), to: InstitutionGet, as: :call
@@ -27,4 +38,17 @@ defmodule Queropay do
   defdelegate get_student_by_id(id), to: StudentGet, as: :call
   defdelegate delete_student(id), to: StudentDelete, as: :call
   defdelegate update_student(params), to: StudentUpdate, as: :call
+
+  defdelegate get_all_enrollments(), to: EnrollmentGet, as: :all
+  defdelegate create_enrollment(params), to: EnrollmentCreate, as: :call
+  defdelegate get_enrollment_by_id(id), to: EnrollmentGet, as: :call
+  defdelegate delete_enrollment(id), to: EnrollmentDelete, as: :call
+  defdelegate update_enrollment(params), to: EnrollmentUpdate, as: :call
+
+  defdelegate get_all_bills(), to: BillGet, as: :all
+  defdelegate get_bill_by_id(id), to: BillGet, as: :call
+  defdelegate delete_bill(id), to: BillDelete, as: :call
+  defdelegate update_bill(params), to: BillUpdate, as: :call
+
+  defdelegate generate_bills(params), to: EnrollmentBillsCreation, as: :perform
 end
