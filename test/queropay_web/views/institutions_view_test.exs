@@ -1,4 +1,5 @@
 defmodule QueropayWeb.InstitutionsViewTest do
+  @moduledoc false
   use QueropayWeb.ConnCase, async: true
 
   import Phoenix.View

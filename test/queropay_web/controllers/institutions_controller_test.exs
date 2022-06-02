@@ -1,4 +1,5 @@
 defmodule QueropayWeb.InstitutionsControllerTest do
+  @moduledoc false
   use QueropayWeb.ConnCase, async: true
 
   import Queropay.Factory
