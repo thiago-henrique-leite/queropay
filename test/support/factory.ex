@@ -1,4 +1,5 @@
 defmodule Queropay.Factory do
+  @moduledoc false
   use ExMachina.Ecto, repo: Queropay.Repo
 
   alias Queropay.Institution

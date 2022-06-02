@@ -1,4 +1,5 @@
 defmodule Queropay.EnrollmentBillsCreation do
+  @moduledoc false
   use QueropayWeb, :service
 
   alias Queropay.Repo

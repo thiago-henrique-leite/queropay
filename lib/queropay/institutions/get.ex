@@ -1,4 +1,5 @@
 defmodule Queropay.Institutions.Get do
+  @moduledoc false
   alias Queropay.{Error, Repo, Institution}
 
   def call(id) do

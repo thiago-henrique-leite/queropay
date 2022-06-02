@@ -1,4 +1,5 @@
 defmodule Queropay.Enrollments.Create do
+  @moduledoc false
   alias Queropay.{Error, Enrollment, Repo}
 
   def call(%{} = params) do

@@ -1,4 +1,5 @@
 defmodule Queropay.Bills.Delete do
+  @moduledoc false
   alias Queropay.{Error, Repo, Bill}
 
   def call(id) do

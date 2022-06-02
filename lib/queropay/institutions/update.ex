@@ -1,4 +1,5 @@
 defmodule Queropay.Institutions.Update do
+  @moduledoc false
   alias Queropay.{Error, Institution, Repo}
 
   def call(%{"id" => id} = params) do

@@ -1,4 +1,5 @@
 defmodule Queropay.Student do
+  @moduledoc false
   use Ecto.Schema
   import Ecto.Changeset
 

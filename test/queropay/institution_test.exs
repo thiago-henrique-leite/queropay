@@ -1,4 +1,5 @@
 defmodule Queropay.InstitutionTest do
+  @moduledoc false
   use Queropay.DataCase, async: true
 
   import Queropay.Factory

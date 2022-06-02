@@ -1,4 +1,5 @@
 defmodule Queropay.Error do
+  @moduledoc false
   @keys [:status, :result]
 
   @enforce_keys @keys

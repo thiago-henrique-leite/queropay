@@ -1,4 +1,5 @@
 defmodule QueropayWeb.Plugs.IDChecker do
+  @moduledoc false
   import Plug.Conn
 
   alias Plug.Conn
