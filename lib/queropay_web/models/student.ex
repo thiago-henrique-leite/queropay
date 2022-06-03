@@ -25,7 +25,7 @@ defmodule Queropay.Student do
   schema "students" do
     field :name, :string
     field :cpf, :string
-    field :birthday, :string
+    field :birthday, :date
     field :phone, :string
     field :gender, :string
     field :payment_method, :string

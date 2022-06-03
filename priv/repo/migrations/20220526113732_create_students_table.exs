@@ -5,7 +5,7 @@ defmodule Queropay.Repo.Migrations.CreateStudentsTable do
     create table(:students) do
       add(:name, :string)
       add(:cpf, :string)
-      add(:birthday, :string)
+      add(:birthday, :date)
       add(:phone, :string)
       add(:gender, :string)
       add(:payment_method, :string)
